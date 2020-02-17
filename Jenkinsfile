@@ -25,7 +25,6 @@ pipeline
     stage('Build') {
       steps {
         script {
-            echo "python setup.py bdist_wheel"
             sh "python setup.py bdist_wheel"
         }
       }
@@ -33,7 +32,7 @@ pipeline
     stage('Deploy') {
       steps {
         script {
-            echo "python -m twine upload dist/*"
+            sh "python -m twine upload dist/*"
         }
       }
     }
