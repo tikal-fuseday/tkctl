@@ -8,16 +8,13 @@ pipeline
   {
     ansiColor('xterm')
     timestamps()
-    buildDiscarder(logRotator(numToKeepStr: '15'))
+    buildDiscarder(logRotator(numToKeepStr: '4'))
   }
   stages {
     stage('Setup') {
       steps {
         script {
             checkout scm
-            sh "which python"
-            sh "ls -la /usr/bin/python*"
-            sh 'python --version'
             sh 'pip install --user --upgrade setuptools wheel'
             sh 'pip install --user tqdm'
             sh 'pip install --user --upgrade twine'
