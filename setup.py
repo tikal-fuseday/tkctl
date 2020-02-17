@@ -3,7 +3,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
      name='tkctl',  
-     version='0.7',
+     version='0.8',
      scripts=['tkctl'] ,
      author="Tikal Knowledge - Yoram Michaeli",
      author_email="yorammi@tikalk.com",
