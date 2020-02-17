@@ -5,6 +5,9 @@ pipeline
     label 'tci-jnlp-node'
   }
   options
+    tools {
+        python3 'python3'
+    }
   {
     ansiColor('xterm')
     timestamps()
@@ -15,8 +18,9 @@ pipeline
       steps {
         script {
             checkout scm
-            echo "virtual env"
-        }
+            sh 'python3 --version'
+            sh 'pip3 install -U pytest'
+         }
       }
     }
     stage('Build') {
