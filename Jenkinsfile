@@ -32,7 +32,7 @@ pipeline
     stage('Deploy') {
       steps {
         script {
-            sh "python -m twine upload dist/*"
+            sh "python -u yorammi -m twine upload dist/*"
         }
       }
     }
