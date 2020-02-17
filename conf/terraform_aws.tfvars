@@ -20,11 +20,3 @@ tags = {
     Environment = "prod"
     Owner       = "user"
 }
-
-# Google Cloud
-project_id = "tkctl-268508"
-
-# Azure
-location = "North Europe"
-env = "Production"
-customer = "Tikal"
