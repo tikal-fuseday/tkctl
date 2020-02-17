@@ -15,6 +15,8 @@ pipeline
       steps {
         script {
             checkout scm
+            sh "which python"
+            sh "ls -la /usr/bin/python*"
             sh 'python3 --version'
             sh 'pip3 install --user --upgrade setuptools wheel'
             sh 'pip3 install --user tqdm'
