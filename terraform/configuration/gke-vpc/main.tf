@@ -19,8 +19,8 @@ provider "google" {
 }
 
 module "gcp-network" {
-  source       = "terraform-google-modules/network/google"
-  version      = "~> 2.0"
+  source       = "../../modules/google/terraform-google-network"
+  # version      = "~> 2.0"
   project_id   = var.project_id
   network_name = var.network
 
@@ -47,7 +47,7 @@ module "gcp-network" {
 }
 
 module "gke" {
-  source                 = "../../"
+  source                 = "../../modules/google/terraform-google-kubernetes-engine"
   project_id             = var.project_id
   name                   = var.cluster_name
   regional               = true
