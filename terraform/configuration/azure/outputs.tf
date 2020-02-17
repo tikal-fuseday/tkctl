@@ -27,38 +27,38 @@ output "vnet_subnets" {
 
 
 output "aks_id" {
-  value       = module.aks.aks_id
+  value = module.aks.aks_id
 }
 
 output "client_certificate" {
-  value       = module.aks.client_certificate
+  value = module.aks.client_certificate
 }
 
 output "client_key" {
-  value       = module.aks.client_key
+  value = module.aks.client_key
 }
 
 output "cluster_ca_certificate" {
-  value       = module.aks.cluster_ca_certificate
+  value = module.aks.cluster_ca_certificate
 }
 
 output "host" {
-  value       = module.aks.host
+  value = module.aks.host
 }
 
 output "location" {
-  value       = module.aks.location
+  value = module.aks.location
 }
 
 output "node_resource_group" {
-  value       = module.aks.node_resource_group
+  value = module.aks.node_resource_group
 }
 
 output "username" {
-  value       = module.aks.username
+  value = module.aks.username
 }
 
 output "password" {
-  value       = module.aks.password
+  value = module.aks.password
 }
 
