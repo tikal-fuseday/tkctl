@@ -8,7 +8,7 @@ data "aws_security_group" "default" {
 }
 
 module "vpc" {
-  source = "modules/aws-vpc"
+  source = "terraform-aws-modules/vpc/aws"
 
   name = "complete-example"
 
