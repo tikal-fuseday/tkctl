@@ -23,6 +23,7 @@ pipeline
       steps {
         script {
             echo "python setup.py bdist_wheel"
+            sh "python setup.py bdist_wheel"
         }
       }
     }
