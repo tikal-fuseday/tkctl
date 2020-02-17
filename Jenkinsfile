@@ -5,7 +5,7 @@ pipeline
     label 'tci-jnlp-node'
   }
   tools {
-    python 'Python-2.7'
+    tool 'Python-2.7'
   }
   options
   {
