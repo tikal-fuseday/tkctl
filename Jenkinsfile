@@ -17,24 +17,24 @@ pipeline
             checkout scm
             sh "which python"
             sh "ls -la /usr/bin/python*"
-            sh 'python3 --version'
-            sh 'pip3 install --user --upgrade setuptools wheel'
-            sh 'pip3 install --user tqdm'
-            sh 'pip3 install --user --upgrade twine'
+            sh 'python --version'
+            sh 'pip install --user --upgrade setuptools wheel'
+            sh 'pip install --user tqdm'
+            sh 'pip install --user --upgrade twine'
          }
       }
     }
     stage('Build') {
       steps {
         script {
-            sh "python3 setup.py bdist_wheel"
+            sh "python setup.py bdist_wheel"
         }
       }
     }
     stage('Deploy') {
       steps {
         script {
-            sh "python3 -m twine upload --config-file .pypirc dist/*"
+            sh "python -m twine upload --config-file .pypirc dist/*"
         }
       }
     }
