@@ -24,7 +24,9 @@ pipeline
     stage('Build') {
       steps {
         script {
-            sh "python setup.py bdist_wheel"
+            withPythonEnv('Python-2.7'){
+                sh "python setup.py bdist_wheel"
+            }
         }
       }
     }

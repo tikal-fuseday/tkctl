@@ -1,0 +1,18 @@
+# Azure pipeline for Terraform AKS module
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  image_name: terraform-azurerm-aks:$(build.buildId)
+  terraform_version: 0.12.10
+
+steps:
+  - script: docker build --build-arg BUILD_TERRAFORM_VERSION=${TERRAFORM_VERSION} -t ${IMAGE_NAME} .
+    displayName: 'docker build'
+
+  - script: docker run ${IMAGE_NAME} rake build
+    displayName: 'validate'
+
+  - script: docker run $(IMAGE_NAME) rake full
+    displayName: 'full build'
+    condition: and(succeeded(),eq(variables['build.sourceBranch'], 'refs/heads/master'))
