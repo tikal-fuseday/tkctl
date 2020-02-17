@@ -1,0 +1,3 @@
+#!/bin/bash
+export TF_VAR_tenant_id=
+export TF_VAR_subscription_id=
