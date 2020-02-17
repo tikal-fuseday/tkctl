@@ -19,7 +19,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 module "azurerm_network" {
-    source              = "../../modules/azurerm-network"
+    source              = "../../modules/azure/azurerm-network"
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
     address_space       = "10.0.0.0/16"
@@ -31,17 +31,16 @@ module "azurerm_network" {
                           }
 }
 
-# module "aks" {
-#   source = "./modules/aks"
-#   # version = "2.0.0"
+module "aks" {
+  source             = "../../modules/azure/azurerm-aks"
+  resource_group_name = azurerm_resource_group.rg.name
+  agents_size        = "Standard_B2s"
+  agents_count       = 2
+  client_id           = var.client_id
+  client_secret       = var.client_secret
+  prefix              = var.project
+  public_ssh_key     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXFVIdODkLSkOax0jL8BMpJiL/FT6/JdL+eZukhRa99DB5RIpOYnvb4LWgQEIBbdISQoQuhaaO4GE7yOF9ilmmNWuX3pewL2vJCdbJsSSeUpHkKSRmCUF2Gh9+emgk+3N9iG8mdRW9KsFBGXmy/6/li5rlxAdqNVsMJ/PYKvWtWvJIRrHFR4eb3+VkwrGr+f/zBt33YYDzzHTXN9MR+oRQOhBRQjR5fixxu4+vDrqJcdKBPn+lmv7RMzPYHNmO2ZhR5E3o4rG33jI4/1HddMP84PH92EkditVBs9lcmYfJgDIh+Yq8uTujr3P8nlmkG1JKwhvS6UkMENuzj3UKFFMN tkctl@tikalk.com"
+}
 
-#   CLIENT_ID          = "526c4950-4485-4dd0-9af5-20d5ad84732a"
-#   CLIENT_SECRET      = "7d94ba45-adb6-4551-8d7b-ece36c91aa9f"
-#   prefix             = "ddyy-k8s-test"
-#   location           = "North Europe"
-#   agents_size        = "Standard_B2s"
-#   agents_count       = 2
-#   kubernetes_version = "1.14.6"
-#   public_ssh_key     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChfZryPRwPcle2fzNjZkjzDiTLOLBvDAx+Vj1zyMEMkoTGA7e8t0p6uuuQaL1ifunjlN7WvhTbvJYy4YNU1/YCN8g99SvZHpJxRDq0qti9W2DUeSdagw6+wSL0ZLseLbDpT4QMJzuGM8y/nkJVUcxTg08GGhDzLdjLxQRI37CTsrt3mShEnf0wp+SYC0hYjKXdYQo27VBNIIsa/MuuOfhgvg7lqM2vvQhCD/8MjHtwOZe8ae342JbK6bzyfBscLbXhxIw2+cIV8MFmvG4DeMCg71h1xfNR8ic9XW9OeW6nJZz4Fm1uysSZnrc24jsoNRl1taWPoCY/S3EvGzM+Hlxz avi@langburd.com"
-# }
+
 
