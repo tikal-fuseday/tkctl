@@ -95,11 +95,11 @@ def terraform_init(env):
     return check_call([TERRAFORM_PATH, 'init'], cwd=env_dir)
 
 
-def terraform_plan(env):
+def terraform_plan(env, var_file):
     env_dir = os.path.join(TERRAFORM_ENVS_DIR, env)
     tmp_plan = tempfile.mktemp()
     print('Terraform Plan...')
-    return call([TERRAFORM_PATH, 'plan', '-out', tmp_plan, '-detailed-exitcode'],
+    return call([TERRAFORM_PATH, 'plan', '-out', tmp_plan, '-detailed-exitcode', '-var-file', var_file],
                 cwd=env_dir)
 
 

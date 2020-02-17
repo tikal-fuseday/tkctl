@@ -31,8 +31,8 @@ def init():
 def deploy():
     click.echo("deploy")
     # create vpc
-    terraform.terraform_init("aws-vpc")
-    terraform.terraform_plan("aws-vpc")
+    terraform.terraform_init("aws/vpc")
+    terraform.terraform_plan("aws/vpc", '../../../../conf/terraform_aws.tfvars')
     continue_flag = input("Initialisation Complete Should we apply this plan: [y/n]")
 
     if (continue_flag == 'y'):
