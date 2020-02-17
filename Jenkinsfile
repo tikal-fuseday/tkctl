@@ -4,9 +4,6 @@ pipeline
   {
     label 'tci-jnlp-node'
   }
-  tools {
-    tool 'Python-2.7'
-  }
   options
   {
     ansiColor('xterm')
