@@ -15,7 +15,7 @@ pipeline
       steps {
         script {
             checkout scm
-            sh 'apt-get python36u python36u-devel python36u-pip python-pip'
+            sh 'apk add --no-cache python3 && if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi'
             sh 'pip install --user --upgrade setuptools wheel'
             sh 'pip install --user tqdm'
             sh 'pip install --user --upgrade twine'
