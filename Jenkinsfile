@@ -16,14 +16,15 @@ pipeline
         script {
             checkout scm
             sh 'python --version'
-            sh 'pip install -U pytest'
+            sh 'pip install --user --upgrade setuptools wheel'
+            sh 'pip install --user tqdm'
+            sh 'pip install --user --upgrade twine'
          }
       }
     }
     stage('Build') {
       steps {
         script {
-            echo "python setup.py bdist_wheel"
             sh "python setup.py bdist_wheel"
         }
       }
@@ -31,7 +32,7 @@ pipeline
     stage('Deploy') {
       steps {
         script {
-            echo "python -m twine upload dist/*"
+            sh "python -u yorammi -m twine upload dist/*"
         }
       }
     }
