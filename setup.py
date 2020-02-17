@@ -3,7 +3,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
      name='tkctl',  
-     version='0.3',
+     version='0.7',
      scripts=['tkctl'] ,
      author="Tikal Knowledge - Yoram Michaeli",
      author_email="yorammi@tikalk.com",
@@ -14,7 +14,7 @@ setuptools.setup(
      packages=setuptools.find_packages(),
      classifiers=[
          "Programming Language :: Python :: 3",
-         "License :: OSI Approved :: Apache License",
+         "License :: OSI Approved :: Apache Software License",
          "Operating System :: OS Independent",
      ],
  )
