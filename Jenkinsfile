@@ -1,9 +1,16 @@
 pipeline
 {
-  agent
-  {
-    label 'tci-jnlp-node'
-  }
+//   agent
+//   {
+//     label 'tci-jnlp-node'
+//   }
+  agent {
+    // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+    dockerfile {
+        filename 'Dockerfile'
+        label 'python3'
+    }
+}
   options
   {
     ansiColor('xterm')
