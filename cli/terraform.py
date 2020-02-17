@@ -1,22 +1,22 @@
 import os
-import shutil
-# import boto3
-# import urllib
-import mimetypes
+import tempfile
+
 from urllib import request
 from subprocess import check_call, call
 
 # SOURCE_BUCKET = os.environ['source_bucket']
-REPO_PATH = '/tmp/'
+REPO_PATH = './'
+
+CACHE_DIR=os.path.join(os.getcwd(), '.tkctl')
 
 TERRAFORM_VERSION = '0.12.20'
-TERRAFORM_WORKSPACE = 's3restricted'
 TERRAFORM_CWD = os.path.join(REPO_PATH, 'terraform')
-TERRAFORM_CACHE = os.path.join(TERRAFORM_CWD, '.terraform')
-TERRAFORM_DIR = os.path.join('/tmp', 'terraform_%s' % TERRAFORM_VERSION)
+TERRAFORM_CACHE = os.path.join(CACHE_DIR, '.terraform')
+TERRAFORM_DIR = os.path.join(CACHE_DIR, 'terraform_%s' % TERRAFORM_VERSION)
 TERRAFORM_PATH = os.path.join(TERRAFORM_DIR, 'terraform')
-TERRAFORM_DOWNLOAD_URL = (
-    'https://releases.hashicorp.com/terraform/{0}/terraform_{0}_darwin_amd64.zip'.format(TERRAFORM_VERSION))
+TERRAFORM_DOWNLOAD_URL = ('https://releases.hashicorp.com/terraform/{0}/terraform_{0}_darwin_amd64.zip'.format(TERRAFORM_VERSION))
+
+TERRAFORM_ENVS_DIR = os.path.join(TERRAFORM_CWD, 'configuration')
 
 
 def install_terraform():
@@ -90,19 +90,18 @@ def get_blob_list(codecommit, repository, branch):
 #         check_call(['cksum', absolute_path])
 
 
-def terraform_init():
-    # TODO might be better to always clean .terraform if exist
-    if not os.path.exists(TERRAFORM_CACHE):
-        print('Terraform Init...')
-        check_call([TERRAFORM_PATH, 'init', '-no-color'], cwd=TERRAFORM_CWD)
-
-    check_call([TERRAFORM_PATH, 'workspace', 'select', TERRAFORM_WORKSPACE, '-no-color'], cwd=TERRAFORM_CWD)
+def terraform_init(env):
+    env_dir = os.path.join(TERRAFORM_ENVS_DIR, env)
+    return check_call([TERRAFORM_PATH, 'init'], cwd=env_dir)
 
 
-def terraform_plan():
+def terraform_plan(env):
+    env_dir = os.path.join(TERRAFORM_ENVS_DIR, env)
+    tmp_plan = tempfile.mktemp()
     print('Terraform Plan...')
-    return call([TERRAFORM_PATH, 'plan', '-out', 'tfplan', '-no-color', '-detailed-exitcode'],
-                cwd=TERRAFORM_CWD)
+    return call([TERRAFORM_PATH, 'plan', '-out', tmp_plan, '-detailed-exitcode'],
+                cwd=env_dir)
+
 
 
 def terraform_apply(exitcode):
@@ -115,7 +114,7 @@ def terraform_apply(exitcode):
     elif exitcode == 2:
         # Succeeded, Diff
         print('Terraform Apply...')
-        check_call([TERRAFORM_PATH, 'apply', 'tfplan', '-no-color'], cwd=TERRAFORM_CWD)
+        check_call([TERRAFORM_PATH, 'apply', 'tfplan', '--dry-run', '-no-color'], cwd=TERRAFORM_CWD)
 
 
 def lambda_handler(event, context):
