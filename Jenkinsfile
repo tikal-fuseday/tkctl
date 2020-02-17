@@ -4,10 +4,10 @@ pipeline
   {
     label 'tci-jnlp-node'
   }
+  tools {
+    python3 'python3'
+  }
   options
-    tools {
-        python3 'python3'
-    }
   {
     ansiColor('xterm')
     timestamps()
