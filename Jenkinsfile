@@ -16,8 +16,8 @@ pipeline
         script {
             checkout scm
             sh 'python --version'
-            sh 'pip install --upgrade setuptools wheel'
-            sh 'pip install tqdm'
+            sh 'pip install --user --upgrade setuptools wheel'
+            sh 'pip install --user tqdm'
             sh 'pip install --user --upgrade twine'
          }
       }
