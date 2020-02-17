@@ -5,7 +5,7 @@ pipeline
     label 'tci-jnlp-node'
   }
   tools {
-    python3 'python3'
+    python 'Python-2.7'
   }
   options
   {
@@ -18,8 +18,8 @@ pipeline
       steps {
         script {
             checkout scm
-            sh 'python3 --version'
-            sh 'pip3 install -U pytest'
+            sh 'python --version'
+            sh 'pip install -U pytest'
          }
       }
     }
