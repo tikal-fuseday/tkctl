@@ -1,7 +1,7 @@
+# AWS
 region = "us-east-1"
 name = "vpc1"
 cidr = "10.10.0.0/16"
-
 
 azs  = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 private_subnets     = ["10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24"]
@@ -23,3 +23,8 @@ tags = {
 
 # Google Cloud
 project_id = "tkctl-268508"
+
+# Azure
+location = "North Europe"
+env = "Production"
+customer = "Tikal"
