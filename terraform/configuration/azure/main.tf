@@ -17,14 +17,14 @@ module "azurerm_network" {
 }
 
 module "aks" {
-  source                = "../../modules/azure/azurerm-aks"
-  resource_group_name   = azurerm_resource_group.rg.name
-  agents_size           = var.agents_size
-  agents_count          = var.agents_count
-  client_id             = var.client_id
-  client_secret         = var.client_secret
-  prefix                = var.project
-  public_ssh_key        = var.public_ssh_key
+  source              = "../../modules/azure/azurerm-aks"
+  resource_group_name = azurerm_resource_group.rg.name
+  agents_size         = var.agents_size
+  agents_count        = var.agents_count
+  client_id           = var.client_id
+  client_secret       = var.client_secret
+  prefix              = var.project
+  public_ssh_key      = var.public_ssh_key
   tags = {
     environment = var.env
   }

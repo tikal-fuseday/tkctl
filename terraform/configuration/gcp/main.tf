@@ -20,7 +20,6 @@ provider "google" {
 
 module "gcp-network" {
   source       = "../../modules/google/terraform-google-network"
-  # version      = "~> 2.0"
   project_id   = var.project_id
   network_name = var.network
 
