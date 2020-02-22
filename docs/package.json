@@ -1,0 +1,28 @@
+{
+	"name": "tkctl-wiki",
+	"version": "0.1.0",
+	"description": "tkclt Wiki",
+	"main": "index.js",
+	"repository": "git@github.com:tikal-fuseday/tkctl.git",
+	"author": "Tikal DevOps <devops@tikalk.com>",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"dev": "vuepress dev .",
+		"build": "vuepress build .",
+		"show-help": "vuepress --help",
+		"lint": "eslint --ext .js,.vue --fix . && stylelint --fix \"src/**/*.vue\" \"src/**/*.scss\" && markdownlint --ignore=node_modules docs/*.md *.md && prettier --check \"**/*.{js,json,css,scss,vue,md}\""
+	},
+	"devDependencies": {
+		"eslint": "^6.3.0",
+		"eslint-config-prettier": "^6.1.0",
+		"eslint-plugin-vue": "^5.2.3",
+		"eslint-plugin-vue-libs": "^4.0.0",
+		"markdownlint-cli": "^0.18.0",
+		"vuepress": "^1.0.3",
+    "vuepress-plugin-flowchart": "^1.4.3"
+	},
+	"dependencies": {
+		"pdfobject": "^2.1.1"
+	}
+}
